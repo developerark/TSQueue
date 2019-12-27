@@ -31,7 +31,6 @@ void consumer(TSQueue<Item>& queue){
 }
 
 int main(int argc, const char * argv[]) {
-    
     TSQueue<Item> queue;
     std::thread consumerThread(consumer, std::ref(queue));
     

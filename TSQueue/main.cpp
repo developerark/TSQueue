@@ -16,7 +16,7 @@ public:
     std::string name;
 };
 
-bool running = true;
+std::atomic<bool> running(true);
 
 void consumer(TSQueue<Item>& queue){
     while (running){
@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
         char input = std::getchar();
         if (input == 'q'){
             std::cout << "Received q" << std::endl;
-            running = false;
+            running.exchange(false);
             break;
         }
         if (input == 'i'){

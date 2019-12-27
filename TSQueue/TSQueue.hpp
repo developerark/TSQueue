@@ -34,6 +34,11 @@ public:
     TSQueue(){}
     
     /**
+     *@brief Copy assignment
+     */
+    TSQueue& operator=(const TSQueue&) = delete;
+    
+    /**
      *@brief Copy constructor of the TSQueue class. This enables an instance of this class to be passed around as value.
      *
      *@param other The instance to be copied from
@@ -158,7 +163,7 @@ public:
         // Timed out
         return false;
     }
-    
+     
     /**
      *@brief Waits and pops an item from the queue and returns a std::shared_ptr<T>.
      *This is a blocking call with a timeout functionality.

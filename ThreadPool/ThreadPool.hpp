@@ -18,12 +18,41 @@
 class ThreadPool{
 private:
     std::atomic<bool> _done;
+    std::atomic<bool> _waitToEmpty;
+    
     TSQueue<std::function<void()>> _workQueue;
     std::vector<std::thread> _threads;
     ThreadJoiner _threadJoiner;
     
+    bool _shouldRun(){
+        /*
+        // Done         // _waitToEmpty         // _empty           // shouldRun
+            T                   T                   T                   F
+            T                   T                   F                   T
+            T                   F                   T                   F
+            T                   F                   F                   F
+            F                   T                   T                   T
+            F                   T                   F                   T
+            F                   F                   T                   T
+            F                   F                   F                   T
+        */
+        
+        if (!this->_done){
+            return true;
+        }else{
+            if (!this->_waitToEmpty){
+                return false;
+            }else{
+                if(this->_workQueue.empty()){
+                    return false;
+                }
+                return true;
+            }
+        }
+    }
+    
     void _startWorker(){
-        while(!this->_done){
+        while(this->_shouldRun()){
             std::function<void()> work;
             if (this->_workQueue.tryAndPop(work)){
                 work();
@@ -35,7 +64,7 @@ private:
     
 public:
     ThreadPool():
-        _done(false), _threadJoiner(_threads){
+        _done(false), _threadJoiner(_threads), _waitToEmpty(false){
             unsigned const maxThreads = std::thread::hardware_concurrency();
             try{
                 for (unsigned int i = 0; i < maxThreads; i++){
@@ -51,9 +80,17 @@ public:
         this->_done = true;
     }
     
-    template <typename T>
-    void submit(T work){
+    
+    void submit(std::function<void()> work){
         this->_workQueue.push(work);
+    }
+    
+    void setDone(bool value){
+        this->_done = value;
+    }
+    
+    void setWaitToEmpty(bool value){
+        this->_waitToEmpty = value;
     }
 };
 

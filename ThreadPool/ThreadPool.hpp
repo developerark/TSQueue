@@ -14,6 +14,7 @@
 #include <thread>
 #include "TSQueue.hpp"
 #include "ThreadJoiner.hpp"
+#include <iostream>
 
 class ThreadPool{
 private:
@@ -23,6 +24,7 @@ private:
     TSQueue<std::function<void()>> _workQueue;
     std::vector<std::thread> _threads;
     ThreadJoiner _threadJoiner;
+    unsigned int _noOfWorkerThreads = std::thread::hardware_concurrency();
     
     bool _shouldRun(){
         /*
@@ -63,11 +65,11 @@ private:
     }
     
 public:
-    ThreadPool():
-        _done(false), _threadJoiner(_threads), _waitToEmpty(false){
-            unsigned const maxThreads = std::thread::hardware_concurrency();
+    ThreadPool(unsigned int noOfWorkerThreads=std::thread::hardware_concurrency()):
+        _done(false), _threadJoiner(_threads), _waitToEmpty(false), _noOfWorkerThreads(noOfWorkerThreads){
+            std::cout << "Thread Pool with " << std::to_string(this->_noOfWorkerThreads) << " threads."  << std::endl;
             try{
-                for (unsigned int i = 0; i < maxThreads; i++){
+                for (unsigned int i = 0; i < this->_noOfWorkerThreads; i++){
                     this->_threads.push_back(std::thread(&ThreadPool::_startWorker, this));
                 }
             }catch(...){

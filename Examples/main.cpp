@@ -66,22 +66,24 @@ void test1(){
     std::cout << "Ending program..." << std::endl;
 }
 
-void work(){
-    std::cout << "This is work..." << std::endl;
+void work(int id){
+    std::cout << "This is work..." << id << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
 void test2(){
-    ThreadPool threadPool;
+    ThreadPool threadPool(16);
     threadPool.setWaitToEmpty(true);
+
+    int count = 0;
     while (true){
         char input = std::getchar();
         if (input == 'q'){
             std::cout << "Received q" << std::endl;
             break;
         }else if (input == 'i'){
-            for (int i = 0; i < 10; i++){
-                threadPool.submit(work);
+            for (int i = 0; i < 100; i++){
+                threadPool.submit(std::bind(work, count++));
             }
         }
     }

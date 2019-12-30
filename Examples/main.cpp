@@ -30,7 +30,7 @@ void consumer(TSQueue<Item>& queue){
     }
 }
 
-int main(int argc, const char * argv[]) {
+void test1(){
     TSQueue<Item> queue;
     std::thread consumerThread(consumer, std::ref(queue));
     
@@ -62,6 +62,13 @@ int main(int argc, const char * argv[]) {
     
     consumerThread.join();
     std::cout << "Ending program..." << std::endl;
+}
+
+void test2(){
+    
+}
+
+int main(int argc, const char * argv[]) {
     
     return 0;
 }

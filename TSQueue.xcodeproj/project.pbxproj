@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0AA6DD7D23B59A1600D7A015 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AA6DD7C23B59A1600D7A015 /* main.cpp */; };
 		0AA6DD8523B59A2D00D7A015 /* TSQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AA6DD8323B59A2D00D7A015 /* TSQueue.cpp */; };
+		0AF1F54E23B99B77007CF156 /* ThreadJoiner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1F54C23B99B77007CF156 /* ThreadJoiner.cpp */; };
+		0AF1F55223B99BE5007CF156 /* ThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1F55023B99BE5007CF156 /* ThreadPool.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +30,10 @@
 		0AA6DD7C23B59A1600D7A015 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0AA6DD8323B59A2D00D7A015 /* TSQueue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TSQueue.cpp; sourceTree = "<group>"; };
 		0AA6DD8423B59A2D00D7A015 /* TSQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TSQueue.hpp; sourceTree = "<group>"; };
+		0AF1F54C23B99B77007CF156 /* ThreadJoiner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadJoiner.cpp; sourceTree = "<group>"; };
+		0AF1F54D23B99B77007CF156 /* ThreadJoiner.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThreadJoiner.hpp; sourceTree = "<group>"; };
+		0AF1F55023B99BE5007CF156 /* ThreadPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadPool.cpp; sourceTree = "<group>"; };
+		0AF1F55123B99BE5007CF156 /* ThreadPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThreadPool.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +50,9 @@
 		0AA6DD7023B59A1600D7A015 = {
 			isa = PBXGroup;
 			children = (
+				0AF1F55423B99C6F007CF156 /* Examples */,
+				0AF1F54F23B99BD2007CF156 /* ThreadPool */,
+				0AF1F54B23B99B61007CF156 /* ThreadJoiner */,
 				0AA6DD7B23B59A1600D7A015 /* TSQueue */,
 				0AA6DD7A23B59A1600D7A015 /* Products */,
 			);
@@ -60,11 +69,36 @@
 		0AA6DD7B23B59A1600D7A015 /* TSQueue */ = {
 			isa = PBXGroup;
 			children = (
-				0AA6DD7C23B59A1600D7A015 /* main.cpp */,
 				0AA6DD8323B59A2D00D7A015 /* TSQueue.cpp */,
 				0AA6DD8423B59A2D00D7A015 /* TSQueue.hpp */,
 			);
 			path = TSQueue;
+			sourceTree = "<group>";
+		};
+		0AF1F54B23B99B61007CF156 /* ThreadJoiner */ = {
+			isa = PBXGroup;
+			children = (
+				0AF1F54C23B99B77007CF156 /* ThreadJoiner.cpp */,
+				0AF1F54D23B99B77007CF156 /* ThreadJoiner.hpp */,
+			);
+			path = ThreadJoiner;
+			sourceTree = "<group>";
+		};
+		0AF1F54F23B99BD2007CF156 /* ThreadPool */ = {
+			isa = PBXGroup;
+			children = (
+				0AF1F55023B99BE5007CF156 /* ThreadPool.cpp */,
+				0AF1F55123B99BE5007CF156 /* ThreadPool.hpp */,
+			);
+			path = ThreadPool;
+			sourceTree = "<group>";
+		};
+		0AF1F55423B99C6F007CF156 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				0AA6DD7C23B59A1600D7A015 /* main.cpp */,
+			);
+			path = Examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,7 +159,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AA6DD8523B59A2D00D7A015 /* TSQueue.cpp in Sources */,
+				0AF1F55223B99BE5007CF156 /* ThreadPool.cpp in Sources */,
 				0AA6DD7D23B59A1600D7A015 /* main.cpp in Sources */,
+				0AF1F54E23B99B77007CF156 /* ThreadJoiner.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

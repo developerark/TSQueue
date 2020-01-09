@@ -156,8 +156,8 @@ public:
         std::unique_lock<std::mutex> lock(this->_mu);
         if (this->_queueCondition.wait_for(lock, waitDuration, [this]{return !_queue.empty();})){
             // Got something
-            value = this->_queueCondition.front();
-            this->_queueCondition.pop();
+            value = this->_queue.front();
+            this->_queue.pop();
             return true;
         }
         // Timed out

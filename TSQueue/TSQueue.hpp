@@ -44,7 +44,7 @@ public:
      *@param other The instance to be copied from
      */
     TSQueue(TSQueue const& other){
-        std::lock_guard<std::mutex> lock(this->_mu);
+        std::lock_guard<std::mutex> lock(other->_mu);
         this->_queue = other._queue;
     }
     
